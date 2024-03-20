@@ -1,0 +1,74 @@
+# This is a blank resume body file that provides a jumping off point for creating a new resume.
+# List items (items with brackets []) mean that you can have multiple entries.
+
+# Personal Information
+# --------------------
+name: ""
+phone: ""
+github: {
+  display: "",
+  url: ""
+}
+email: {
+  display: "",
+  url: ""
+}
+linkedin: {
+  display: "",
+  url: ""
+}
+
+# Education Section
+# -----------------
+Education: {
+  degrees: [
+    # Repeat the whole {} block for another degree
+    {
+      title: "",
+      major: "",
+      date: "",
+      school: "",
+      gpa: ""  # This can be `Null` (and thus, not included) in many templates
+    }
+  ]
+}
+
+# Employment History
+# ------------------
+work_history:
+  positions: [
+    # Repeat the whole {} block for each position
+    {
+      title: "",
+      dates: "",
+      company: "",
+      skills: "",
+      location: "",
+      bullets: [
+        "",
+        "",
+        ""
+      ]
+    }
+  ]
+
+
+# Projects
+# --------
+Projects: [
+  # Repeat whole {} block for each project
+  {
+    title: "",
+    skills: "",
+    dates: "",  # Can be `Null` (and thus, not included) in many templates
+    repo: {
+      display: "",
+      url: ""
+    },
+    publication_href: Null,  # If Null, not included. Else, creates hyperlink to publication
+    bullets: [
+      "",
+      ""
+    ]
+  }
+]

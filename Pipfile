@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+
+[packages]
+python-docx = "*"
+jinja2 = "*"
+pyyaml = "*"
+ipykernel = "*"
+docxtpl = "*"
+scipy = "*"
+doc2pdf = "*"
+yapf = "*"
+
+[requires]
+python_version = "3.8"
