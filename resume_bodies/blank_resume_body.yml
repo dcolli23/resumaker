@@ -3,8 +3,9 @@
 
 # Personal Information
 # --------------------
-name: ""
-phone: ""
+name: "Joe Schmoe"
+phone: "867-5309"
+address: "123 Main St, Anytown, USA"
 github: {
   display: "",
   url: ""
@@ -17,6 +18,10 @@ linkedin: {
   display: "",
   url: ""
 }
+googlescholar: {
+  display: "",
+  url: ""
+}
 
 # Education Section
 # -----------------
@@ -24,11 +29,12 @@ Education: {
   degrees: [
     # Repeat the whole {} block for another degree
     {
-      title: "",
-      major: "",
-      date: "",
-      school: "",
-      gpa: ""  # This can be `Null` (and thus, not included) in many templates
+      title: "Theoretical MS in",
+      major: "Physics",
+      date: "Expected Graduation: May '24",
+      school: "Mars University",
+      gpa: Null,  # This can be `Null` (and thus, not included) in many templates
+      honors: "summa cum laude"
     }
   ]
 }
