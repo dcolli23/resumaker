@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# TEMPLATE="templates/skills_highlight.docx"
 TEMPLATE="templates/skills_and_research_highlight.docx"
-# TEMPLATE="templates/skills_and_research_highlight_amazon_robotics.docx"
 
-# YML_FILE="resume_bodies/resume_grad_robotics_long_form.yml"
-YML_FILE="resume_bodies/resume_grad_robotics.yml"
+YML_FILE="resume_bodies/blank_resume_body.yml"
 
 # It would be great if I could add automatic date-tagging here. Probably appreciated by the
 # recruiters too.
-OUTPUT_NAME="dylan_colli_resume"
+OUTPUT_NAME="my_resume"
 OUTPUT_ROOT="output/${OUTPUT_NAME}"
 OUTPUT_DOCX="${OUTPUT_ROOT}.docx"
 OUTPUT_PDF="${OUTPUT_ROOT}.pdf"
