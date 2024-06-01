@@ -49,25 +49,15 @@ if __name__ == "__main__":
         description=("CLI for resumaker, a tool for producing resumes from DOCX templates and "
                      "resume information contained in YAML files."))
 
-    parser.add_argument("--yaml_file",
-                        "-y",
-                        required=True,
-                        type=Path,
-                        help="The YAML file containing your resume info.")
-    parser.add_argument("--docx_template",
-                        "-d",
-                        required=True,
+    parser.add_argument("yaml_file", type=Path, help="The YAML file containing your resume info.")
+    parser.add_argument("docx_template",
                         type=Path,
                         help="File path to the resume structural template")
-
-    # Zero-padded date format such that `ls` maintains chronological order.
-    date_str = datetime.date.today().strftime("%Y%m%d")
     parser.add_argument("--output-name",
                         "-o",
                         type=str,
                         help="The root name of the output resume file *without* file extension.",
-                        default=f"resume_{date_str}")
-
+                        default="resume")
     parser.add_argument("--no-display-pdf", default=False, action="store_true")
     parser.add_argument("--convert-to-txt", "-c", default=False, action="store_true")
 
@@ -75,5 +65,9 @@ if __name__ == "__main__":
 
     args.yaml_file = args.yaml_file.resolve()
     args.docx_template = args.docx_template.resolve()
+
+    # Zero-padded date format such that `ls` maintains chronological order.
+    date_str = datetime.date.today().strftime("%Y%m%d")
+    args.output_name = f"{args.output_name}_{date_str}"
 
     main(**vars(args))
