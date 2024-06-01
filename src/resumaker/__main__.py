@@ -1,57 +1,44 @@
+"""CLI for resumaker, a tool for producing resumes from DOCX templates and resume information in
+YAML files."""
 from pathlib import Path
 import os
 import subprocess
 
-ROOT_DIR = Path(os.path.dirname(__file__))
-OUTPUT_DIR = ROOT_DIR / "output"
+from resumaker import resumaker
 
+RESUMAKER_MODULE_DIR = Path(os.path.dirname(__file__))
+RESUMAKER_MODULE_ROOT_DIR = RESUMAKER_MODULE_DIR.parents[1]
 
-def populate_resume_template(yaml_file: Path, docx_template: Path, output_root: str):
-    """Populates the resume template by calling `resumaker.py`
-
-    Assumes working directory is this repository's root directory.
-    """
-    # NOTE: Constructing this seperately from the subprocess function call in case I want to add
-    # optional commands, such as the option to remove markdown-style hyperlinks.
-    cmd = [
-        "pipenv", "run", "python", "resumaker.py",
-        yaml_file.as_posix(),
-        docx_template.as_posix(), "-o", output_root
-    ]
-    print("Populating resume template with resume body.")
-    subprocess.run(cmd, check=True)
-
-
-def do_docx_to_pdf_conversion(docx_file: Path):
-    print("Now using doc2pdf to convert to PDF")
-    subprocess.run(["doc2pdf", docx_file], check=True)
+WORKING_DIR = Path.cwd().resolve()
+OUTPUT_DIR = WORKING_DIR / "output"
 
 
 def main(yaml_file: Path,
          docx_template: Path,
          output_name: str,
          no_display_pdf: bool = False,
-         convert_to_txt: bool = False):
-    # Have to change the working directory to this repo for pipenv environment activation.
-    os.chdir(ROOT_DIR.as_posix())
-    output_root = OUTPUT_DIR / output_name
+         convert_to_txt: bool = False,
+         output_dir: Path = OUTPUT_DIR):
+    # Placing this in the main function to avoid creating the directory until necessary.
+    output_dir.mkdir(exist_ok=True)
 
-    populate_resume_template(yaml_file, docx_template, output_name)
+    resumaker.verify_files(yaml_file, docx_template)
+
+    output_root = output_dir / output_name
     output_docx = output_root.with_suffix(".docx")
+    output_pdf = output_root.with_suffix(".pdf")
 
-    do_docx_to_pdf_conversion(output_docx)
+    resumaker.make_resume_docx(yaml_file, docx_template, output_docx)
+    resumaker.convert_to_pdf(output_docx, output_pdf)
 
     # Open the PDF *in the background* if conversion was successful.
     if not no_display_pdf:
         print("Displaying PDF in the background.")
-        subprocess.Popen(["evince", output_root.with_suffix(".pdf")])
+        subprocess.Popen(["evince", output_pdf])
 
     # Convert to TXT if desired.
     if convert_to_txt:
-        print("Converting output DOCX to TXT to check automated resume parsing compatibility.")
-        subprocess.run(
-            ["docx2txt", output_docx.as_posix(),
-             output_root.with_suffix(".txt")], check=True)
+        resumaker.convert_to_txt(output_docx, output_root.with_suffix(".txt"))
 
 
 if __name__ == "__main__":
@@ -86,9 +73,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if not args.yaml_file.exists():
-        raise FileNotFoundError(f"Could not find the YAML file: {args.yaml_file}")
-    if not args.docx_template.exists():
-        raise FileNotFoundError(f"Could not find the DOCX template file: {args.docx_template}")
+    args.yaml_file = args.yaml_file.resolve()
+    args.docx_template = args.docx_template.resolve()
 
     main(**vars(args))

@@ -17,7 +17,14 @@ keywords = [
 authors = [{ name = "Dylan Colli", email = "dylanfrankcolli@gmail.com" }]
 maintainers = [{ name = "Dylan Colli", email = "dylanfrankcolli@gmail.com" }]
 classifiers = []
-dependencies = ["python-docx", "jinja2", "pyyaml", "docxtpl"]
+dependencies = [
+    "python-docx",
+    "jinja2",
+    "pyyaml",
+    "docxtpl",
+    "doc2pdf",
+    "docx2txt",
+]
 requires-python = ">=3.8"
 
 [project.urls]
