@@ -1,0 +1,7 @@
+output_root_name: example_resume
+resume_body: resume_bodies/blank_resume_body.yaml
+sections:
+  - templates/sections/headers/name_with_media_links.docx
+  - templates/sections/education/education_with_honors.docx
+  - templates/sections/work_history/employment_and_research.docx
+  - templates/sections/projects/projects_and_publications.docx
