@@ -1,0 +1,88 @@
+# This is a blank resume body file that provides a jumping off point for creating a new resume.
+# List items (items with brackets []) mean that you can have multiple entries.
+
+# Personal Information
+# --------------------
+name: "Joe Schmoe"
+phone: "867-5309"
+address: "123 Main St, Anytown, USA"
+github: {
+  display: "You can add",
+  url: "https://dcolli23.github.io/"
+}
+email: {
+  display: "rich text",
+  url: "https://dcolli23.github.io/"
+}
+linkedin: {
+  display: "to all of these!",
+  url: "https://dcolli23.github.io/"
+}
+googlescholar: {
+  display: "also here!",
+  url: "https://dcolli23.github.io/"
+}
+
+# Education Section
+# -----------------
+Education: {
+  degrees: [
+    # Repeat the whole {} block for another degree
+    {
+      title: "Theoretical MS in",
+      major: "Physics",
+      date: "Expected Graduation: May '37",
+      school: "Mars University",
+      gpa: 3.9,  # This can be `Null` (and thus, not included) in many templates
+      honors: "summa cum laude"
+    },
+    {
+      title: "BS in",
+      major: "Bayesian Statistics",
+      date: "May '18",
+      school: "Earth Tech.",
+      gpa: Null,  # This can be `Null` (and thus, not included) in many templates
+      honors: Null
+    }
+  ]
+}
+
+# Employment History
+# ------------------
+work_history:
+  positions: [
+    # Repeat the whole {} block for each position
+    {
+      title: "Widget Designer",
+      dates: "Now - Forever",
+      company: "Corp. Inc.",
+      skills: "Prompt Engineering, Widget Design, Widget Testing",
+      location: "Ann Arbor, MI",
+      bullets: [
+        "Decreased widget production time by 50% by implementing new design",
+        "Increased widget durability by 25% by changing materials",
+        "Architected new widget testing system that increased accuracy by 10%"
+      ]
+    }
+  ]
+
+
+# Projects
+# --------
+Projects: [
+  # Repeat whole {} block for each project
+  {
+    title: "Resume Templating Tool",
+    skills: "Python, Git",
+    dates: Null,  # Can be `Null` (and thus, not included) in many templates
+    repo: {
+      display: "This is a hyperlink to the repo",
+      url: "https://github.com/dcolli23/resumaker"
+    },
+    publication_href: Null,  # If Null, not included. Else, creates hyperlink to publication
+    bullets: [
+      "Why not add some bullets?",
+      "It's a great way to show off your skills!"
+    ]
+  }
+]
