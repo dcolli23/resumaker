@@ -18,6 +18,8 @@ RESUMAKER_MODULE_ROOT_DIR = RESUMAKER_MODULE_DIR.parents[1]
 
 WORKING_DIR = Path.cwd().resolve()
 OUTPUT_DIR = WORKING_DIR / "output"
+print("Output directory:", OUTPUT_DIR)
+OUTPUT_DIR.mkdir(exist_ok=True)
 
 
 class JobArguments:
