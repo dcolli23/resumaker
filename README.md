@@ -19,11 +19,10 @@ This library is setup such that the module is executable via the command line. T
 1. Activate your Python environment if you installed `resumaker` in one.
 2. Execute the following:
     ```
-    python -m resumaker <yaml_file> <docx_template_file>
+    python -m resumaker <job_yaml_file>
     ```
+    Where `<job_yaml_file>` is the YAML file containing the path to the YAML file with all of your resume body information, the paths to sections that you want to compose for your resume, among other arguments.
     
-This populates the DOCX template with your information in the YAML file, convert that DOCX file to PDF, then use `evince` to display the PDF.
+This populates the DOCX templates with your information in the YAML file, converts the output DOCX file to PDF, then uses `evince` to display the PDF.
 
-## Planned Development
-
-I would very much like to make the resume sections modular so that one can pick and choose which sections to include. There's no promise that I'll get to this, but keep an eye on the [issues page](https://github.com/dcolli23/resumaker/issues) and star the repository if you'd like updates!
+For more information on how to format the input files, see `resume_bodies/blank_resume_body.yaml` and `jobs/example_resume_job.yaml`.
