@@ -24,6 +24,7 @@ dependencies = [
     "docxtpl",
     "doc2pdf",
     "docx2txt",
+    "docxcompose",
 ]
 requires-python = ">=3.8"
 
