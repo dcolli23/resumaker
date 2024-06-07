@@ -1,6 +1,7 @@
 """CLI for resumaker, a tool for producing resumes from DOCX templates and resume information in
 YAML files."""
 from pathlib import Path
+from typing import Dict, Any
 import os
 import subprocess
 
@@ -18,32 +19,20 @@ RESUMAKER_MODULE_ROOT_DIR = RESUMAKER_MODULE_DIR.parents[1]
 WORKING_DIR = Path.cwd().resolve()
 OUTPUT_DIR = WORKING_DIR / "output"
 
-# def main(yaml_file: Path,
-#          docx_template: Path,
-#          output_name: str,
-#          no_display_pdf: bool = False,
-#          convert_to_txt: bool = False,
-#          output_dir: Path = OUTPUT_DIR):
-#     # Placing this in the main function to avoid creating the directory until necessary.
-#     output_dir.mkdir(exist_ok=True)
 
-#     resumaker.verify_files(yaml_file, docx_template)
+class JobArguments:
 
-#     output_root = output_dir / output_name
-#     output_docx = output_root.with_suffix(".docx")
-#     output_pdf = output_root.with_suffix(".pdf")
+    def __init__(self, job_path: Path):
+        self._job_path = job_path
+        self._job_dict = self._load_yaml(self._job_path)
+        self.output_root_name: str = self._job_dict["output_root_name"]
+        self._resume_body_path: Path = Path(self._job_dict["resume_body"])
+        self.resume_body = self._load_yaml(self._resume_body_path.resolve())
+        self.sections: list[Path] = [Path(p).resolve() for p in self._job_dict["sections"]]
 
-#     resumaker.make_resume_docx(yaml_file, docx_template, output_docx)
-#     resumaker.convert_to_pdf(output_docx, output_pdf)
-
-#     # Open the PDF *in the background* if conversion was successful.
-#     if not no_display_pdf:
-#         print("Displaying PDF in the background.")
-#         subprocess.Popen(["evince", output_pdf])
-
-#     # Convert to TXT if desired.
-#     if convert_to_txt:
-#         resumaker.convert_to_txt(output_docx, output_root.with_suffix(".txt"))
+    def _load_yaml(self, path: Path) -> Dict[str, Any]:
+        with path.open("r") as f:
+            return yaml.safe_load(f)
 
 
 def remove_last_paragraph(doc: docx.document.Document):
